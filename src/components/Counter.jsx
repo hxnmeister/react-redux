@@ -4,7 +4,7 @@ import { decrement, increaseBy, increment } from '../slices/counterSlice';
 
 const Counter = () => 
 {
-    const count = useSelector( (state /*хранит в себе все значения redurers из store.js*/) => state.counter.value );
+    const count = useSelector( (state) => state.counter.value );
     const dispatch = useDispatch();
 
     return (
