@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import "./style.css";
-import validateMessages from '../../validationMessages/validationMessages';
+import validateMessages from '../../lang/en/validationMessages';
 
 const layout = 
 {
@@ -36,7 +36,7 @@ const Login = () =>
     return (
         <div className="formContainer">
             <Form {...layout} name='loginForm' initialValues={initValues} onFinish={onFinish} onFinishFailed={onFinishFail} validateMessages={validateMessages}>
-                <Form.Item label="Email" name="email" rules={[{required: true, message: "Email is required!"}, {type: 'email'}]}>
+                <Form.Item label="Email" name="email" rules={[{required: true}, {type: 'email'}]}>
                     <Input/>
                 </Form.Item>
 

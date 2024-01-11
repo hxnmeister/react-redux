@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import validateMessages from '../../validationMessages/validationMessages';
+import validateMessages from '../../lang/en/validationMessages';
 
 const layout = 
 {
