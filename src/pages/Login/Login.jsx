@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import "./style.css";
 import validateMessages from '../../lang/en/validationMessages';
+import { useDispatch } from 'react-redux';
+import { login  as userLogin } from '../../asyncThunks/authThunk';
 
 const layout = 
 {
@@ -17,13 +19,8 @@ const layout =
 
 const initValues = 
 {
-    email: 'template@mail.com',
-    password: ''
-};
-
-const onFinish = (values) =>
-{
-    console.log(values);
+    email: 'test@gmail.com',
+    password: '123456'
 };
 
 const onFinishFail = (errorInfo) =>
@@ -33,6 +30,14 @@ const onFinishFail = (errorInfo) =>
 
 const Login = () => 
 {
+    const dispatch = useDispatch();
+
+    const onFinish = (values) =>
+    {
+        console.log(values);
+        dispatch(userLogin(values));
+    };
+
     return (
         <div className="formContainer">
             <Form {...layout} name='loginForm' initialValues={initValues} onFinish={onFinish} onFinishFailed={onFinishFail} validateMessages={validateMessages}>
