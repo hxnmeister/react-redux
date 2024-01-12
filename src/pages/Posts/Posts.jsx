@@ -31,12 +31,12 @@ const Post = () =>
     {
         return error;
     }
-    
+
     return (
         <div>
             <h1>Posts</h1>
             <button onClick={ addPostHandler }>Add Post</button>
-            {posts.map( (post) => <div key={post._id}>{post.title}</div>)}
+            {posts.map( (post) => <div key={post._id}> <span>{post.title} {/*- {post.comments.map( (comment) => comment.text )}*/}</span></div>)}
         </div>
     );
 }

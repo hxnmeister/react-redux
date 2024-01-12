@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'antd';
 import "./style.css";
 import validateMessages from '../../lang/en/validationMessages';
 import { useDispatch } from 'react-redux';
-import { login  as userLogin } from '../../asyncThunks/authThunk';
+import { login } from '../../asyncThunks/authThunk';
 
 const layout = 
 {
@@ -35,7 +35,7 @@ const Login = () =>
     const onFinish = (values) =>
     {
         console.log(values);
-        dispatch(userLogin(values));
+        dispatch(login(values));
     };
 
     return (

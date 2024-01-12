@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login } from "../asyncThunks/authThunk";
+import { login, registration } from "../asyncThunks/authThunk";
 
 
 const initialState = 
@@ -29,6 +29,20 @@ export const authSlice = createSlice
                 state.token = action.payload.token;
             })
             .addCase(login.rejected, (state, action) => 
+            { 
+                state.loading = false;
+                state.error = 'error';
+            })
+            .addCase(registration.pending, (state, action) => 
+            { 
+                state.loading = true;
+            })
+            .addCase(registration.fulfilled, (state, action) => 
+            { 
+                state.loading = false;
+                state.userData = action.payload;
+            })
+            .addCase(registration.rejected, (state, action) => 
             { 
                 state.loading = false;
                 state.error = 'error';

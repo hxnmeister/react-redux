@@ -9,3 +9,5 @@ export const login = createAsyncThunk('auth/login', async (payload) =>
 
     return responseData;
 });
+
+export const registration = createAsyncThunk('auth/registration', async (payload) => (await api.post('/register', payload)).data);

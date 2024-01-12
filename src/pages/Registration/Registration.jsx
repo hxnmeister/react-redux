@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import validateMessages from '../../lang/en/validationMessages';
+import { useDispatch } from 'react-redux';
+import { registration } from '../../asyncThunks/authThunk';
 
 const layout = 
 {
@@ -21,17 +23,21 @@ const initValues =
     password: ''
 };
 
-const onFinish = (values) =>
-{
-    console.log(values);
-};
-
 const onFinishFail = (errorInfo) =>
 {
     console.log(errorInfo);
 };
 
-const Registration = () => {
+const Registration = () => 
+{
+    const dispatch = useDispatch();
+
+    const onFinish = (values) =>
+    {
+        console.log(values);
+        dispatch(registration(values));
+    };
+
     return (
         <div className="formContainer">
             <Form {...layout} name='loginForm' initialValues={initValues} onFinish={onFinish} onFinishFailed={onFinishFail} validateMessages={validateMessages}>
