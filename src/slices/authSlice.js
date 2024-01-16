@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, registration } from "../asyncThunks/authThunk";
+import { login, registration, fetchUserData } from "../asyncThunks/authThunk";
+import { getToken } from "../utils/helperFunctions";
 
 
 const initialState = 
 {
     userData: null,
     token: null,
-    loading: false,
+    loading: 'idle',
     error: null
 };
 
@@ -20,31 +21,46 @@ export const authSlice = createSlice
             builder
             .addCase(login.pending, (state, action) => 
             { 
-                state.loading = true;
+                state.loading = 'pending';
             })
             .addCase(login.fulfilled, (state, action) => 
             { 
-                state.loading = false;
+                state.loading = 'succeeded';
                 state.userData = action.payload.user;
                 state.token = action.payload.token;
             })
             .addCase(login.rejected, (state, action) => 
             { 
-                state.loading = false;
+                state.loading = 'failed';
                 state.error = 'error';
             })
             .addCase(registration.pending, (state, action) => 
             { 
-                state.loading = true;
+                state.loading = 'pending';
             })
             .addCase(registration.fulfilled, (state, action) => 
             { 
-                state.loading = false;
+                state.loading = 'succeeded';
                 state.userData = action.payload;
             })
             .addCase(registration.rejected, (state, action) => 
             { 
-                state.loading = false;
+                state.loading = 'failed';
+                state.error = 'error';
+            })
+            .addCase(fetchUserData.pending, (state, action) => 
+            { 
+                state.loading = 'pending';
+            })
+            .addCase(fetchUserData.fulfilled, (state, action) => 
+            { 
+                state.loading = 'succeeded';
+                state.userData = action.payload;
+                state.token = getToken();
+            })
+            .addCase(fetchUserData.rejected, (state, action) => 
+            { 
+                state.loading = 'failed';
                 state.error = 'error';
             })
         }

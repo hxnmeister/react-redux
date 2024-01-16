@@ -2,8 +2,10 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import "./style.css";
 import validateMessages from '../../lang/en/validationMessages';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../asyncThunks/authThunk';
+import { getToken } from '../../utils/helperFunctions';
+import { Navigate } from 'react-router-dom';
 
 const layout = 
 {
@@ -30,7 +32,13 @@ const onFinishFail = (errorInfo) =>
 
 const Login = () => 
 {
+    const { token } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+
+    if(token || getToken())
+    {
+        return <Navigate to="/"/>
+    }
 
     const onFinish = (values) =>
     {

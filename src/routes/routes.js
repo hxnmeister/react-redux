@@ -3,6 +3,7 @@ import App from "../App";
 import Login from "../pages/Login/Login";
 import Registration from "../pages/Registration/Registration";
 import Posts from "../pages/Posts/Posts";
+import PrivateRoute from "../middleware/PrivateRoute";
 
 const router = createBrowserRouter
 (
@@ -24,6 +25,10 @@ const router = createBrowserRouter
                     path: '/login',
                     element: <Login/>
                 },
+                {
+                    path: '/profile',
+                    element: <PrivateRoute><h1>Profile</h1></PrivateRoute>
+                }
             ]
         }
     ]
